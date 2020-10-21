@@ -86,4 +86,8 @@ dependencies {
     //Room
     implementation "androidx.room:room-runtime:2.2.5"
     annotationProcessor "androidx.room:room-compiler:2.2.5"
+
+    //mediacompat
+    implementation 'androidx.core:core:1.3.2'
+    implementation 'androidx.media:media:1.2.0'
 }

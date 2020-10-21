@@ -85,8 +85,6 @@ public class Song implements Media {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        /*Todo*/
-//        throw new java.lang.UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

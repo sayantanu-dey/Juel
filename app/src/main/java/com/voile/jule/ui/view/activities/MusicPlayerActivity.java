@@ -38,6 +38,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements Runnable {
                 e.printStackTrace();
             }
             binding.duration.setText(song.getDuration()+"");
+
         }
         else{
             finish();
@@ -47,5 +48,10 @@ public class MusicPlayerActivity extends AppCompatActivity implements Runnable {
     @Override
     public void run() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
