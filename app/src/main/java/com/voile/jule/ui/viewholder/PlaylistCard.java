@@ -38,7 +38,11 @@ public class PlaylistCard extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 if(playlistEntity.getPlaylist()!=null && listner!=null){
-                    listner.onItemClick(playlistEntity.getPlaylist());
+                    try {
+                        listner.onItemClick(playlistEntity.getPlaylist());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

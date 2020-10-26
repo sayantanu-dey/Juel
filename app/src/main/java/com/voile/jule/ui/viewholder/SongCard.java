@@ -42,7 +42,11 @@ public class SongCard extends RecyclerView.ViewHolder implements PopupMenu.OnMen
             @Override
             public void onClick(View v) {
                 if(song!=null && listner!=null){
-                    listner.onItemClick(song);
+                    try {
+                        listner.onItemClick(song);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

@@ -12,12 +12,13 @@ import androidx.databinding.DataBindingUtil;
 import com.voile.jule.R;
 import com.voile.jule.databinding.MusicPlayerActivityBinding;
 import com.voile.jule.media.Media;
+import com.voile.jule.media.Playable;
 import com.voile.jule.media.Song;
 import com.voile.jule.ui.view.fragments.MusicFragment;
 
 import java.io.IOException;
 
-public class MusicPlayerActivity extends AppCompatActivity implements Runnable {
+public class MusicPlayerActivity extends AppCompatActivity{
 
     public static final String SONG = "com.voile.jule.ui.view.activities.SONG";
     MusicPlayerActivityBinding binding;
@@ -45,13 +46,10 @@ public class MusicPlayerActivity extends AppCompatActivity implements Runnable {
         }
     }
 
-    @Override
-    public void run() {
-
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }

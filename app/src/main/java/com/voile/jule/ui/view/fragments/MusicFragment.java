@@ -21,12 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.voile.jule.R;
 import com.voile.jule.dao.DeviceMediaFetch;
+import com.voile.jule.databinding.BaseActivityMainBinding;
 import com.voile.jule.databinding.MusicFragmentBinding;
+import com.voile.jule.media.JuleMediaPlayer;
 import com.voile.jule.media.Media;
 import com.voile.jule.media.Song;
 import com.voile.jule.ui.adapter.ItemOnClickListner;
 import com.voile.jule.ui.adapter.SongRecyclerViewAdapter;
 import com.voile.jule.ui.repository.SongListRepository;
+import com.voile.jule.ui.view.activities.BaseActivity;
 import com.voile.jule.ui.view.activities.MusicPlayerActivity;
 import com.voile.jule.ui.viewmodel.MusicFragmentViewModel;
 
@@ -34,7 +37,17 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class MusicFragment extends Fragment {
-    MusicFragmentBinding binding;
+
+    private BaseActivity baseActivity;
+
+    public MusicFragment(BaseActivity baseActivity) {
+        this.baseActivity = baseActivity;
+    }
+
+    private MusicFragmentBinding binding;
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,10 +65,13 @@ public class MusicFragment extends Fragment {
         viewModel.getAllDeviceSongs().observe(getViewLifecycleOwner(), adapter::submitList);
         adapter.setItemOnClickListner(new ItemOnClickListner() {
             @Override
-            public void onItemClick(Media media) {
-                Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
-                intent.putExtra(MusicPlayerActivity.SONG,media);
-                startActivity(intent);
+            public void onItemClick(Media media) throws IOException {
+                JuleMediaPlayer.getInstance(getContext()).LoadSong((Song)media);
+                baseActivity.toggleMediaVisibility(View.VISIBLE);
+//                Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
+//                intent.putExtra(MusicPlayerActivity.SONG,media);
+//                startActivity(intent);
+
             }
         });
      //   adapter.submitList(DeviceMediaFetch.getDeviceSongs(getContext()));
